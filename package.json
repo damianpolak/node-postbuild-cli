@@ -1,0 +1,29 @@
+{
+  "name": "nest-postbuild",
+  "version": "1.0.0",
+  "description": "Postbuild scripts for nestjs app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damianpolak/nest-postbuild.git"
+  },
+  "keywords": [
+    "nest",
+    "postbuild",
+    "script",
+    "cli",
+    "package"
+  ],
+  "dependencies": {
+    "jszip": "^3.10.1"
+  },
+  "author": "Damian Polak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/damianpolak/nest-postbuild/issues"
+  },
+  "homepage": "https://github.com/damianpolak/nest-postbuild#readme"
+}
