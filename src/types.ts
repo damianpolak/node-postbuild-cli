@@ -1,3 +1,5 @@
+import yargs from 'yargs';
+
 export type Tag = `[${string}]`;
 
 export type Path = {
@@ -18,3 +20,12 @@ export type Config = {
   packageKeepEntries?: string[];
   packageAddEntries?: string[];
 };
+
+export interface CLIArguments extends yargs.Arguments {
+  jsonSrcDir?: string;
+  jsonDstDir?: string;
+  zipDir?: string;
+  zipOut?: string;
+  filesSrcToCopy?: string[];
+  filesDstToCopy?: string[];
+}
