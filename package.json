@@ -22,6 +22,10 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "yargs": "^17.7.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
@@ -32,6 +36,7 @@
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
+    "@types/yargs": "^17.0.31",
     "husky": "^8.0.3",
     "jest": "^29.7.0",
     "nodemon": "^3.0.1",
@@ -55,9 +60,6 @@
   "main": ".eslintrc.js",
   "directories": {
     "test": "test"
-  },
-  "dependencies": {
-    "jszip": "^3.10.1"
   },
   "keywords": [
     "nest",
