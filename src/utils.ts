@@ -80,8 +80,10 @@ export class Util {
 
   static async copyFiles(files: Path[]): Promise<void> {
     try {
-      for await (const file of files) {
-        await fs.promises.copyFile(file.source, file.destination);
+      if (files.length > 0) {
+        for await (const file of files) {
+          await fs.promises.copyFile(file.source, file.destination);
+        }
       }
     } catch (e) {
       Logger.justlog('Something is wrong with copying files...');
