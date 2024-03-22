@@ -3,9 +3,9 @@ import { hideBin } from 'yargs/helpers';
 
 export const cliArgsParse = () => {
   return yargs(hideBin(process.argv))
-    .usage('$ nest-postbuild-cli [options]')
+    .usage('$ node-postbuild-cli [options]')
     .example(
-      '$ nest-postbuild-cli --json-src-dir=<path> --json-dst-dir=<path> --files-to-copy=<files>',
+      '$ node-postbuild-cli --json-src-dir=<path> --json-dst-dir=<path> --files-to-copy=<files>',
       ''
     )
     .options({
