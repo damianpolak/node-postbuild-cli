@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import path from 'path';
 import { CLIArguments, Config, Path, Resource, Tag } from './types';
 import { Util } from './utils';
