@@ -5,7 +5,7 @@ import { Util } from './utils';
 import { cliArgsParse } from './cli';
 import { Logger } from './logger';
 
-export const tag: Tag = `[NestPostBuild]` as const;
+export const tag: Tag = `[NodePostBuild]` as const;
 
 (async () => {
   Logger.justlog('Start script');
