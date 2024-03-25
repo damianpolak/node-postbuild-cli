@@ -17,6 +17,7 @@ export type Config = {
   tag: Tag;
   general: OldConfig;
   resources: Resource;
+  tasks: string[];
 };
 
 export type OldConfig = {
@@ -34,6 +35,7 @@ export interface CLIArguments extends yargs.Arguments {
   zipOut?: string;
   filesSrcToCopy?: string[];
   filesDstToCopy?: string[];
+  tasks?: Task[];
 }
 
 export const tasks = [
