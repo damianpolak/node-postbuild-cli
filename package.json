@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "module": "dist/index.js",
   "bin": {
-    "node-postbuild": "dist/index.js",
-    "nodepb": "dist/index.js"
+    "node-postbuild-cli": "dist/index.js",
+    "npbc": "dist/index.js"
   },
   "scripts": {
     "start": "nodemon --config nodemon.json src/index.ts",
@@ -66,6 +66,7 @@
     "nest",
     "nestjs",
     "postbuild",
+    "cli",
     "script",
     "build",
     "deploy",
