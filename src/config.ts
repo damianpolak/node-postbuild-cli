@@ -42,4 +42,5 @@ export const config: Config = {
       dst: parsedArgs.zipOut as string,
     },
   },
+  tasks: parsedArgs.tasks as string[],
 } as const;
