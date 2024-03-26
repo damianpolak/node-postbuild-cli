@@ -3,8 +3,8 @@ import yargs from 'yargs';
 export type Tag = `[${string}]`;
 
 export type Path = {
-  source: string;
-  destination: string;
+  src: string;
+  dst: string;
 };
 
 export type Resource = {
@@ -14,6 +14,13 @@ export type Resource = {
 };
 
 export type Config = {
+  tag: Tag;
+  general: OldConfig;
+  resources: Resource;
+  tasks: string[];
+};
+
+export type OldConfig = {
   npmCommand: string;
   npmRunLocation: string;
   zipDestDirectory?: string;
@@ -22,10 +29,25 @@ export type Config = {
 };
 
 export interface CLIArguments extends yargs.Arguments {
-  jsonSrcDir?: string;
-  jsonDstDir?: string;
+  pkgDst?: string;
+  pkgSrc?: string;
   zipDir?: string;
   zipOut?: string;
   filesSrcToCopy?: string[];
   filesDstToCopy?: string[];
+  tasks?: Task[];
 }
+
+export const tasks = [
+  'package',
+  'zip',
+  'deps',
+  'copyfiles',
+] as const satisfies ReadonlyArray<string>;
+
+export type Task = (typeof tasks)[number];
+
+export type TaskFeature = {
+  name: Task;
+  task(): Promise<void>;
+};
