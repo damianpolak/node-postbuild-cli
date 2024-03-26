@@ -9,22 +9,22 @@ import { exec } from 'child_process';
 
 export class Feature {
   private constructor() {}
-  static zipDirectory(folderPath: string | undefined, zipFilePath: string | undefined): void {
-    if (!folderPath || !zipFilePath) {
+  static zipDirectory(dirPath: string | undefined, zipFilePath: string | undefined): void {
+    if (!dirPath || !zipFilePath) {
       Logger.justlog('Compress directory path and destination path cannot be empty');
     } else {
       const zip = new JSZip();
 
-      const addDirectoryToZip = (zipFile: JSZip, folderPath: string, currentPath = '') => {
-        const files = fs.readdirSync(path.join(folderPath, currentPath));
+      const addDirectoryToZip = (zipFile: JSZip, dirPath: string, currentPath = '') => {
+        const files = fs.readdirSync(path.join(dirPath, currentPath));
 
         for (const file of files) {
           const filePath = path.join(currentPath, file);
-          const fullFilePath = path.join(folderPath, filePath);
+          const fullFilePath = path.join(dirPath, filePath);
           const stats = fs.statSync(fullFilePath);
 
           if (stats.isDirectory()) {
-            addDirectoryToZip(zipFile, folderPath, filePath);
+            addDirectoryToZip(zipFile, dirPath, filePath);
           } else {
             const fileContent = fs.readFileSync(fullFilePath);
             zipFile.file(filePath, fileContent);
@@ -36,7 +36,7 @@ export class Feature {
         fs.mkdirSync(zipFilePath);
       }
 
-      addDirectoryToZip(zip, folderPath);
+      addDirectoryToZip(zip, dirPath);
       zip
         .generateAsync({ type: 'nodebuffer' })
         .then((content) => {

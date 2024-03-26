@@ -37,8 +37,8 @@ export const cliArgsParse = () => {
       'It runs tasks: package and deps with default values and zip with custom output directory'
     )
     .options({
-      j: { type: 'string', alias: 'json-src-dir', default: '.' },
-      k: { type: 'string', alias: 'json-dst-dir', default: './dist' },
+      j: { type: 'string', alias: 'pkg-src', default: '.' },
+      k: { type: 'string', alias: 'pkg-dst', default: './dist' },
       c: { type: 'string', alias: 'zip-dir', default: './dist' },
       d: { type: 'string', alias: 'zip-out', default: './dist-zip' },
       f: { type: 'array', alias: 'files-src-to-copy', default: [] },

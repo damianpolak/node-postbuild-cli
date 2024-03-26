@@ -1,15 +1,13 @@
-import path from 'path';
 import { cliArgsParse } from './cli';
 import { CLIArguments, Config, Path } from './types';
 
 const parsedArgs = cliArgsParse() as CLIArguments;
-console.log('Current path', path.resolve('.'));
 
 export const config: Config = {
   tag: `[NodePostBuild]`,
   general: {
     npmCommand: 'npm install',
-    npmRunLocation: './dist',
+    npmRunLocation: parsedArgs.pkgDst as string,
     packageAddEntries: [],
     packageKeepEntries: [
       'name',
@@ -28,8 +26,8 @@ export const config: Config = {
   },
   resources: {
     packageJson: {
-      src: parsedArgs.jsonSrcDir as string,
-      dst: parsedArgs.jsonDstDir as string,
+      src: parsedArgs.pkgSrc as string,
+      dst: parsedArgs.pkgDst as string,
     },
     files: parsedArgs.filesSrcToCopy?.map((f, i) => {
       return {

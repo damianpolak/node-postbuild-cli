@@ -29,8 +29,8 @@ export type OldConfig = {
 };
 
 export interface CLIArguments extends yargs.Arguments {
-  jsonSrcDir?: string;
-  jsonDstDir?: string;
+  pkgDst?: string;
+  pkgSrc?: string;
   zipDir?: string;
   zipOut?: string;
   filesSrcToCopy?: string[];
