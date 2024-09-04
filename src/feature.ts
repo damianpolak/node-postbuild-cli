@@ -121,8 +121,10 @@ export class Feature {
       for await (const command of commands) {
         try {
           const { stdout, stderr } = await util.promisify(exec)(command);
-          Logger.justlog('Command out: ', stdout);
-          Logger.justlog('Command error: ', stderr);
+          Logger.justlog(`Command '${command}' out: `, stdout.trim());
+          if (stderr) {
+            Logger.justlog('Command error: ', stderr.trim());
+          }
         } catch (e) {
           Logger.justlog('The command could not be executed: ', (e as Error).message);
         }
