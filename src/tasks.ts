@@ -43,4 +43,11 @@ export const registeredTasks: TaskFeature[] = [
       Feature.remove(config.resources.remove);
     },
   },
+  {
+    name: 'commands',
+    task: async () => {
+      Logger.justlog('Run command...');
+      await Feature.runCommands(config.resources.commands);
+    },
+  },
 ] as const;

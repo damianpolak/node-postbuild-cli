@@ -113,4 +113,20 @@ export class Feature {
       });
     }
   }
+
+  static async runCommands(commands: string[]): Promise<void> {
+    if (commands.length === 0) {
+      Logger.justlog('No commands to run...');
+    } else {
+      for await (const command of commands) {
+        try {
+          const { stdout, stderr } = await util.promisify(exec)(command);
+          Logger.justlog('Command out: ', stdout);
+          Logger.justlog('Command error: ', stderr);
+        } catch (e) {
+          Logger.justlog('The command could not be executed: ', (e as Error).message);
+        }
+      }
+    }
+  }
 }
