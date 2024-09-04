@@ -11,6 +11,7 @@ export type Resource = {
   packageJson: Path;
   compressing?: Path;
   files: Path[];
+  remove: string[];
 };
 
 export type Config = {
@@ -35,6 +36,7 @@ export interface CLIArguments extends yargs.Arguments {
   zipOut?: string;
   filesSrcToCopy?: string[];
   filesDstToCopy?: string[];
+  remove?: string[];
   tasks?: Task[];
 }
 
@@ -43,6 +45,7 @@ export const tasks = [
   'zip',
   'deps',
   'copyfiles',
+  'remove',
 ] as const satisfies ReadonlyArray<string>;
 
 export type Task = (typeof tasks)[number];

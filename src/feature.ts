@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import JSZip from 'jszip';
 import path from 'path';
-import fs from 'fs';
+import fs, { rmSync } from 'fs';
 import { Logger } from './logger';
 import { Path } from './types';
 import util from 'util';
@@ -97,6 +97,20 @@ export class Feature {
       console.log(stderr);
     } catch (e) {
       console.error(e);
+    }
+  }
+
+  static remove(paths: string[]): void {
+    if (paths.length === 0) {
+      Logger.justlog('No resources to delete...');
+    } else {
+      paths.forEach((path) => {
+        try {
+          rmSync(path, { recursive: true });
+        } catch (e) {
+          Logger.justlog('The specified resource could not be deleted: ', (e as Error).message);
+        }
+      });
     }
   }
 }

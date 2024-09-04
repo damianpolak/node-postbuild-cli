@@ -39,6 +39,7 @@ export const config: Config = {
       src: parsedArgs.zipDir as string,
       dst: parsedArgs.zipOut as string,
     },
+    remove: parsedArgs.remove as string[],
   },
   tasks: parsedArgs.tasks as string[],
 } as const;
