@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import JSZip from 'jszip';
 import path from 'path';
-import fs from 'fs';
+import fs, { rmSync } from 'fs';
 import { Logger } from './logger';
 import { Path } from './types';
 import util from 'util';
@@ -97,6 +97,38 @@ export class Feature {
       console.log(stderr);
     } catch (e) {
       console.error(e);
+    }
+  }
+
+  static remove(paths: string[]): void {
+    if (paths.length === 0) {
+      Logger.justlog('No resources to delete...');
+    } else {
+      paths.forEach((path) => {
+        try {
+          rmSync(path, { recursive: true });
+        } catch (e) {
+          Logger.justlog('The specified resource could not be deleted: ', (e as Error).message);
+        }
+      });
+    }
+  }
+
+  static async runCommands(commands: string[]): Promise<void> {
+    if (commands.length === 0) {
+      Logger.justlog('No commands to run...');
+    } else {
+      for await (const command of commands) {
+        try {
+          const { stdout, stderr } = await util.promisify(exec)(command);
+          Logger.justlog(`Command '${command}' out: `, stdout.trim());
+          if (stderr) {
+            Logger.justlog('Command error: ', stderr.trim());
+          }
+        } catch (e) {
+          Logger.justlog('The command could not be executed: ', (e as Error).message);
+        }
+      }
     }
   }
 }

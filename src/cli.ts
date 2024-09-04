@@ -27,6 +27,8 @@ export const cliArgsParse = () => {
     .usage(`- copyfiles: copies the files specified in the cli arguments`)
     .usage(`- deps: installs dependencies in package.json directory`)
     .usage(`- zip: zipping dist directory`)
+    .usage(`- remove: removes files or directories specified in the cli arguments`)
+    .usage(`- commands: runs os commands specified in the cli arguments`)
     .example(
       '$ npx node-postbuild-cli --tasks package copyfiles deps zip --files-src-to-copy ./.env ./ecosystem.config.js --files-dst-to-copy ./dist/.env ./dist/ecosystem.config.js',
       'It runs tasks: package, deps and zip with default values and copyfiles .env, ecosystem.config.js to ./dist'
@@ -37,12 +39,14 @@ export const cliArgsParse = () => {
       'It runs tasks: package and deps with default values and zip with custom output directory'
     )
     .options({
+      a: { type: 'array', alias: 'commands', default: [] },
       j: { type: 'string', alias: 'pkg-src', default: '.' },
       k: { type: 'string', alias: 'pkg-dst', default: './dist' },
       c: { type: 'string', alias: 'zip-dir', default: './dist' },
       d: { type: 'string', alias: 'zip-out', default: './dist-zip' },
       f: { type: 'array', alias: 'files-src-to-copy', default: [] },
       g: { type: 'array', alias: 'files-dst-to-copy', default: [] },
+      R: { type: 'array', alias: 'remove', default: [] },
       r: { type: 'array', alias: 'tasks', choices: tasks, default: [] },
     })
     .describe('pkg-src', 'Package.json source dir')
@@ -50,6 +54,8 @@ export const cliArgsParse = () => {
     .describe('files-src-to-copy', 'File paths to copy')
     .describe('files-dst-to-copy', 'File destination paths')
     .describe('tasks', 'Tasks in the given order')
+    .describe('remove', 'Remove files or directories in the given order')
+    .describe('commands', 'OS commands to run')
     .describe('zip-dir', 'Zip input directory')
     .describe('zip-out', 'Zip output directory')
     .parse();
