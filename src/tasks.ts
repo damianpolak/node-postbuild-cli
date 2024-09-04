@@ -36,4 +36,11 @@ export const registeredTasks: TaskFeature[] = [
       Feature.zipDirectory(config.resources.compressing?.src, config.resources.compressing?.dst);
     },
   },
+  {
+    name: 'remove',
+    task: async () => {
+      Logger.justlog('Removing...');
+      Feature.remove(config.resources.remove);
+    },
+  },
 ] as const;
