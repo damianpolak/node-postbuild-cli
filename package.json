@@ -1,6 +1,6 @@
 {
   "name": "node-postbuild-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "module": "dist/index.js",
   "bin": {
     "node-postbuild-cli": "dist/index.js",
